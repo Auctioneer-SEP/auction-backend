@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt")
 var collection ;
 mongoose.set('strictQuery', true);
 mongoose
-  .connect("mongodb://localhost:27017/loginform", { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/auctiondb", { useNewUrlParser: true })
   .then((data) => console.log("server is connected to mongodb"))
   .catch((err) => console.log(err));
 const app = express();
