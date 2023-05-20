@@ -8,15 +8,16 @@ const bcrypt = require("bcrypt")
 var collection ;
 mongoose.set('strictQuery', true);
 mongoose
-  .connect("mongodb://localhost:27017/auctiondb", { useNewUrlParser: true })
+  .connect("mongodb+srv://nagatharun:gkn0wMU6Vwu92Mrr@auction.jtyvwwt.mongodb.net/", { useNewUrlParser: true })
   .then((data) => console.log("server is connected to mongodb"))
   .catch((err) => console.log(err));
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-app.use("/auction",auctionRoute);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/", require("./routes"));
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`server is up and running on ${port}`));
