@@ -6,6 +6,7 @@ router.get("/",(req,res)=>{
 });
 
 router.use("/auction", require("./auctionItems"));
+router.use("/fav", require("./favItems"));
 
 router.use('/auth', require("./auth"));
 
