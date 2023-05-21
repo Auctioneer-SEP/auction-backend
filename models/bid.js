@@ -11,7 +11,7 @@ const bidSchema = mongoose.Schema({
         required: true
     },
     productId: {
-        type: String,
+        type: ObjectId,
         required: true
     }
 }, {
