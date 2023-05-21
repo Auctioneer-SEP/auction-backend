@@ -95,7 +95,7 @@
    ]
    ```
 
-    6. baseurl/fav/:userId : (GET)
+  6.baseurl/fav/:userId : (GET)
 
     give id of user to get list of all products they marked as favourite
 
