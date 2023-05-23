@@ -16,11 +16,25 @@
        "price": "$10",
        "description": "buy or die",
        "request": true
-   }
+
    ```
+2. baseurl/auction/product : (GET)
+   get all products
+   response format :
 
+   ```json
+   [{"_id":"6469daa5c1a15d5c797c4d3a",
+   "name":"Product","description":"buy or die",
+   "img":"uel.com",
+   "price":"$10",
+   "postedBy":"6468984ec5252af8039edf20",
+   "createdAt":"2023-05-21T08:47:33.130Z",
+   "updatedAt":"2023-05-21T08:47:33.130Z",
+   "__v":0
+   }]
 
-2. baseurl/auction/product/ : (POST)
+   ```
+3. baseurl/auction/product/ : (POST)
    body of the request :
 
    ```
@@ -34,7 +48,7 @@
    }
    ```
 
-    response object :
+   response object :
 
 ```json
 {
@@ -49,7 +63,7 @@
 }
 ```
 
-3. baseurl/auction/bid/ : (POST)
+4. baseurl/auction/bid/ : (POST)
    Automatically handles updating values of bid if user already made one.
    body of request :
 
@@ -62,7 +76,7 @@
    }
    ```
 
-    response :
+   response :
 
 ```
 {
@@ -74,8 +88,8 @@
 }
 ```
 
-4. baseurl/auction/bid/:productId : (GET)
-5. baseurl/user/bid/:userId : (GET)
+5. baseurl/auction/bid/:productId : (GET)
+6. baseurl/user/bid/:userId : (GET)
    give userId or  productId and there endpoints return array of bids related to that
    response :
 
@@ -94,12 +108,11 @@
        }
    ]
    ```
+7. baseurl/fav/:userId : (GET)
 
-    6. baseurl/fav/:userId : (GET)
+   give id of user to get list of all products they marked as favourite
 
-    give id of user to get list of all products they marked as favourite
-
-    response :
+   response :
 
 ```json
 [
@@ -114,7 +127,7 @@
 ]
 ```
 
-7. baseurl/fav : (POST & DELETE)
+8. baseurl/fav : (POST & DELETE)
    body :
 
    ```json

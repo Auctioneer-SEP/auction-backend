@@ -37,6 +37,16 @@ router.post("/product",(req,res)=>{
     });
 })
 
+router.get("/product",(req,res)=>{
+    Product.find({},(err,data)=>{
+        if(err){
+            return res.status(400).send({
+                request: false
+            });
+        }
+        res.json(data);
+    })
+})
 
 router.get("/product/:id",(req,res)=>{
     Product.findOne({_id: req.params.id}, function(err, user){
