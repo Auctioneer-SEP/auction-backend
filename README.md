@@ -16,7 +16,7 @@
        "price": "$10",
        "description": "buy or die",
        "request": true
-
+   }
    ```
 2. baseurl/auction/product : (GET)
    get all products
@@ -110,7 +110,19 @@
    ```
 7. baseurl/fav/:userId : (GET)
 
+<<<<<<< HEAD
    give id of user to get list of all products they marked as favourite
+=======================================================================
+
+  6.baseurl/fav/:userId : (GET)
+
+>>>>>>> dc1fb5ff5f540edc4cd926ed9e6474324efcc147
+>>>>>>>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
 
    response :
 
