@@ -30,6 +30,7 @@ module.exports.signUp = function(req, res){
                     username: user.username,
                     phone: user.phone,
                     id: user._id,
+                    profileUrl: user.profileUrl,
                     request: true
                 });
             });
@@ -63,6 +64,7 @@ module.exports.signIn = function(req, res){
             username: user.username,
             phone: user.phone,
             id: user._id,
+            profileUrl: user.profileUrl,
             request: true
         });
     })

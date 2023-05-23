@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
     phone: {
         type: String,
         required: true
+    },
+    profileUrl: {
+        type: String,
+        required: false
     }
 }, {
     // created at and updated at are stored
