@@ -69,3 +69,24 @@ module.exports.signIn = function(req, res){
         });
     })
 };
+
+// user profile update
+module.exports.update = function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+        if(err){
+            return res.status(400).send({
+                request: false
+            });
+        }
+
+        return res.json({
+            email: req.body.email,
+            name: req.body.name,
+            username: req.body.username,
+            phone: req.body.phone,
+            id: user._id,
+            profileUrl: req.body.profileUrl,
+            request: true
+        });
+    });
+}

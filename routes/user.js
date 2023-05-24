@@ -1,6 +1,7 @@
 const express=require('express')
 const Product = require('../models/product')
 const Bid = require('../models/bid')
+const usersController = require('../controllers/usersController');
 const router=express.Router()
 
 
@@ -28,5 +29,7 @@ router.get("/product/:userId",(req,res)=>{
 
     })
 })
+
+router.post('/update/:id', usersController.update);
 
 module.exports = router;
