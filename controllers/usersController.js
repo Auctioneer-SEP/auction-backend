@@ -1,5 +1,8 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
 
 // get the sign up data
 module.exports.signUp = function(req, res){
@@ -17,21 +20,25 @@ module.exports.signUp = function(req, res){
         }
         
         if(!user){
-            User.create(req.body, function(err, user){
-                if(err){
-                    return res.status(400).send({
-                        request: false
+            bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+                req.body.password = hash;
+                
+                User.create(req.body, function(err, user){
+                    if(err){
+                        return res.status(400).send({
+                            request: false
+                        });
+                    }
+                    
+                    return res.json({
+                        email: user.email,
+                        name: user.name,
+                        username: user.username,
+                        phone: user.phone,
+                        id: user._id,
+                        profileUrl: user.profileUrl,
+                        request: true
                     });
-                }
-
-                return res.json({
-                    email: user.email,
-                    name: user.name,
-                    username: user.username,
-                    phone: user.phone,
-                    id: user._id,
-                    profileUrl: user.profileUrl,
-                    request: true
                 });
             });
         }
@@ -52,41 +59,48 @@ module.exports.signIn = function(req, res){
             });
         }
 
-        if(!user || user.password != req.body.password){
+        bcrypt.compare(req.body.password, user.password).then(function(result){
+            if(result){
+                return res.json({
+                    email: user.email,
+                    name: user.name,
+                    username: user.username,
+                    phone: user.phone,
+                    id: user._id,
+                    profileUrl: user.profileUrl,
+                    request: true
+                });
+            }
+            
             return res.status(401).json({ 
                 request: false
             });
-        }
-
-        return res.json({
-            email: user.email,
-            name: user.name,
-            username: user.username,
-            phone: user.phone,
-            id: user._id,
-            profileUrl: user.profileUrl,
-            request: true
         });
     })
 };
 
 // user profile update
 module.exports.update = function(req, res){
-    User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-        if(err){
-            return res.status(400).send({
-                request: false
-            });
-        }
 
-        return res.json({
-            email: req.body.email,
-            name: req.body.name,
-            username: req.body.username,
-            phone: req.body.phone,
-            id: user._id,
-            profileUrl: req.body.profileUrl,
-            request: true
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+        req.body.password = hash;
+
+        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+            if(err){
+                return res.status(400).send({
+                    request: false
+                });
+            }
+
+            return res.json({
+                email: req.body.email,
+                name: req.body.name,
+                username: req.body.username,
+                phone: req.body.phone,
+                id: user._id,
+                profileUrl: req.body.profileUrl,
+                request: true
+            });
         });
     });
 }
