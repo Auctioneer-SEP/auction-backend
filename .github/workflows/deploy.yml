@@ -17,6 +17,8 @@ jobs:
           username: ${{secrets.SSH_USERNAME}} #User of the server you want to ssh into
           script: |
             cd auction-backend
+            git config --global user.email ${{secrets.MY_EMAIl}}
+            git config --global user.name ${{secrets.MY_NAME}}
             git pull
             npm i
             pm2 restart index.js
