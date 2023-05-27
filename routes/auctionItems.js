@@ -8,6 +8,7 @@ const Product = require("../models/product")
 router.post("/product",(req,res)=>{
     Product.create(req.body, function(err, user){
         if(err){
+            console.log(err)
             return res.status(400).send({
                 request: false
             });
@@ -26,6 +27,8 @@ router.post("/product",(req,res)=>{
                 email : data.email,
                 id: user._id,
                 price : user.price,
+                status : user.status,
+                endtime : user.endtime,
                 description: user.description,
                 request: true
             });

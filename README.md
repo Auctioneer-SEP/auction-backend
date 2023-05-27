@@ -37,29 +37,29 @@
 3. baseurl/auction/product/ : (POST)
    body of the request :
 
-   ```
-
+   ```json
    {
-       "name":"Product",
+       "name":"Product uniq",
        "description": "buy or die",
-       "img":"uel.com",
        "price":"$10",
-       "postedBy": "6468984ec5252af8039edf20"
+       "postedBy": "64689ff54ca94574a6574422",
+       "endtime":"2023-05-27T16:02:36"
    }
    ```
 
-   response object :
+   response object : (status false means item is still available to buy)
 
 ```json
 {
-   img: user.img,
-   productname: user.name,
-   username: data.username,
-   email : data.email,
-   id: user._id,
-   price : user.price,
-   description: user.description,
-   request: true
+    "productname": "Product uniq",
+    "username": "test1",
+    "email": "test1@test.com",
+    "id": "6472362c523adfe87da3ab96",
+    "price": "$10",
+    "status": false,
+    "endtime": "2023-05-27T10:32:36.000Z",
+    "description": "buy or die",
+    "request": true
 }
 ```
 
@@ -168,6 +168,7 @@
    	"profileUrl": "localhost:8000/a.jpg"
    }
    ```
+
    Response:
 
    ```
@@ -191,6 +192,7 @@
     	"password": "test4"
     }
     ```
+
     Response:
 
     ```
@@ -220,6 +222,7 @@
     	"profileUrl": "localhost:8000/a.jpg"
     }
     ```
+
     Response:
     (phone and profileUrl will be sent if modified)
 
@@ -232,3 +235,26 @@
     	"request": true
     }
     ```
+12. baseurl/buy : (PUT)
+
+    call it when the timer for a product ran out
+
+    body : (userID is the id of highest bid )
+
+    ```json
+
+    {
+        "id":"6472362c523adfe87da3ab96",
+        "description": "buy or die",
+        "price":"$10",
+        "userId": "64689ff54ca94574a6574422"
+    }
+    ```
+
+    response :
+
+```
+{
+    "request": true
+}
+```
