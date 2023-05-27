@@ -96,14 +96,12 @@
    ```
    [
        {
-           "_id": "6469daa5c1a15d5c797c4d3a",
-           "name": "Product",
-           "description": "buy or die",
-           "img": "uel.com",
-           "price": "$10",
-           "postedBy": "6468984ec5252af8039edf20",
-           "createdAt": "2023-05-21T08:47:33.130Z",
-           "updatedAt": "2023-05-21T08:47:33.130Z",
+           "_id": "646a12b674861b309cfdaf54",
+           "userId": "64723acbdc56688f3a42df27",
+           "amount": "$20",
+           "productId": "64723532a7b5cee608aba209",
+           "createdAt": "2023-05-21T12:46:46.900Z",
+           "updatedAt": "2023-05-21T12:46:46.900Z",
            "__v": 0
        }
    ]
@@ -245,8 +243,6 @@
 
     {
         "id":"6472362c523adfe87da3ab96",
-        "description": "buy or die",
-        "price":"$10",
         "userId": "64689ff54ca94574a6574422"
     }
     ```
@@ -258,3 +254,24 @@
     "request": true
 }
 ```
+
+13. baseurl/user/product/:userId
+    response :
+
+    ```json
+    [
+        {
+            "_id": "64723532a7b5cee608aba209",
+            "name": "Product not",
+            "description": "buy or die",
+            "price": "$10",
+            "postedBy": "64689ff54ca94574a6574422",
+            "status": true,
+            "endtime": "2023-05-27T10:32:36.000Z",
+            "createdAt": "2023-05-27T16:52:02.172Z",
+            "updatedAt": "2023-05-27T18:17:34.010Z",
+            "__v": 0,
+            "highBid": "64723acbdc56688f3a42df27"
+        }
+    ]
+    ```
