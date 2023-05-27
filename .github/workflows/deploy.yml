@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Deploy NodeJS app
-        uses: appleboy/ssh-action@v0.1.2
+        uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{secrets.SSH_HOST}} #IP address of the server
           key: ${{secrets.SSH_KEY}} #Private or public key of the server
