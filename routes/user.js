@@ -19,7 +19,7 @@ router.get("/bid/:userId",(req,res)=>{
 })
 
 router.get("/product/:userId",(req,res)=>{
-    Product.find({userId: req.params.userId}, (err, product)=>{
+    Product.find({postedBy : req.params.userId}, (err, product)=>{
         if(err){
             return res.status(400).send({
                 request: false
