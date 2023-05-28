@@ -32,4 +32,6 @@ router.get("/product/:userId",(req,res)=>{
 
 router.post('/update/:id', usersController.update);
 
+router.post('/delete-account/:id', usersController.deleteAccount)
+
 module.exports = router;

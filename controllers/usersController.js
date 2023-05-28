@@ -1,4 +1,7 @@
 const User = require('../models/user');
+const Product = require('../models/product');
+const Bid = require('../models/bid');
+const Favourite = require('../models/favourite');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -103,4 +106,30 @@ module.exports.update = function(req, res){
             });
         });
     });
+}
+
+// delete user account
+module.exports.deleteAccount = async function(req, res){
+
+    let user = await User.findById(req.params.id);
+
+    try{
+        const match = await bcrypt.compare(req.body.password, user.password);
+
+        if(match){
+            await User.deleteOne({_id: req.params.id});
+            await Product.deleteMany({postedBy: req.params.id});
+            await Favourite.deleteMany({userId: req.params.id});
+            await Bid.deleteMany({userId: req.params.id});
+        }
+
+        return res.json({
+            request: true
+        });
+    }
+    catch(err){
+        return res.status(401).json({ 
+            request: false
+        });
+    }
 }

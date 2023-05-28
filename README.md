@@ -275,3 +275,18 @@
         }
     ]
     ```
+14. baseurl/user/delete-account/:userId (POST)
+    body:
+
+    ```
+    {
+    	"password": test
+    }
+    ```
+    Response:
+
+    ```
+    {
+    	"request": true
+    }
+    ```
