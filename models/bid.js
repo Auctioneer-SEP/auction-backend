@@ -13,7 +13,15 @@ const bidSchema = mongoose.Schema({
     productId: {
         type: ObjectId,
         required: true
-    }
+    },
+    productName: {
+        type: String,
+        // required: true
+    },
+    productPrice: {
+        type: String,
+        // required: true
+    },
 }, {
     // created at and updated at are stored
     timestamps: true

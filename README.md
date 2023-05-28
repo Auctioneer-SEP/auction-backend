@@ -78,14 +78,18 @@
 
    response :
 
-```
+```json
 {
-    "request": true,
-    "amount": "$20",
-    "userId": "64689ff54ca94574a6574422",
-    "username": "test1",
-    "productId": "6469daa5c1a15d5c797c4d3a"
-}
+        "_id": "6473910de9951f344b0dddf1",
+        "userId": "6472e062f02f6d5ea25f28ac",
+        "amount": "$20",
+        "productId": "6472e869304124b845fe8223",
+        "productName": "Nike Air Jordans",
+        "productPrice": "$120",
+        "createdAt": "2023-05-28T17:36:13.837Z",
+        "updatedAt": "2023-05-28T17:36:13.837Z",
+        "__v": 0
+    }
 ```
 
 5. baseurl/auction/bid/:productId : (GET)
@@ -93,15 +97,17 @@
    give userId or  productId and there endpoints return array of bids related to that
    response :
 
-   ```
+   ```json
    [
        {
-           "_id": "646a12b674861b309cfdaf54",
-           "userId": "64723acbdc56688f3a42df27",
+           "_id": "6473910de9951f344b0dddf1",
+           "userId": "6472e062f02f6d5ea25f28ac",
            "amount": "$20",
-           "productId": "64723532a7b5cee608aba209",
-           "createdAt": "2023-05-21T12:46:46.900Z",
-           "updatedAt": "2023-05-21T12:46:46.900Z",
+           "productId": "6472e869304124b845fe8223",
+           "productName": "Nike Air Jordans",
+           "productPrice": "$120",
+           "createdAt": "2023-05-28T17:36:13.837Z",
+           "updatedAt": "2023-05-28T17:36:13.837Z",
            "__v": 0
        }
    ]

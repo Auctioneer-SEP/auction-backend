@@ -88,30 +88,41 @@ router.post("/bid",(req,res)=>{
         }
         
         if(!data){
-            Bid.create(req.body, (err2, bid)=>{
-               
-                if(err2){
-                    return res.status(400).send({
-                        request: false
-                    });
-                }
-                User.findOne({_id:bid.userId},(err,user)=>{
+            
+                User.findOne({_id:req.body.userId},(err,user)=>{
                     // console.log(user)
                     if(err){
+                        
                         return res.status(400).send({
                             request: false
                         });
                     }
-                    return res.json({
-                        request: true,
-                        amount : bid.amount,
-                        userId : bid.userId,
-                        username : user.username,
-                        productId : bid.productId
+                    Product.findOne({_id : req.body.productId},(err3,prd)=>{
+                        if(err3){
+                        
+                            return res.status(400).send({
+                                request: false
+                            });
+                        }
+                        let obj = {
+                            request: true,
+                            amount : req.body.amount,
+                            userId : req.body.userId,
+                            username : user.username,
+                            productId : req.body.productId,
+                            productName : prd.name,
+                            productPrice : prd.price
+                        }
+                        Bid.create(obj, (err2, bid)=>{
+                            // if(err2) console.log("here")
+                            return res.json(bid)
+                        })
+                        
                     })
+                    
                 })
                 
-            })
+            
         }
         else{
             // if user already exists 
@@ -124,6 +135,7 @@ router.post("/bid",(req,res)=>{
                     });
                 }
                 // console.log(data.userId)
+                
                 User.findOne({_id:data.userId},(err,user)=>{
                     console.log(user)
                     if(err){
@@ -136,7 +148,9 @@ router.post("/bid",(req,res)=>{
                         amount : req.body.amount,
                         userId : data.userId,
                         username : user.username,
-                        productId : data.productId
+                        productId : data.productId,
+                        productName : data.name,
+                        productPrice : data.price
                     })
                 })
                 
