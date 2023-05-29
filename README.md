@@ -6,7 +6,7 @@
    id is the product id generated from mongo db
    response format :
 
-   ```
+   ```json
    {
        "img": "uel.com",
        "productname": "Product",
@@ -15,6 +15,7 @@
        "id": "6469daa5c1a15d5c797c4d3a",
        "price": "$10",
        "description": "buy or die",
+        "endtime": "2023-05-30T14:00:00.000Z",
        "request": true
    }
    ```

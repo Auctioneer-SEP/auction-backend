@@ -52,21 +52,22 @@ router.get("/product",(req,res)=>{
 })
 
 router.get("/product/:id",(req,res)=>{
-    Product.findOne({_id: req.params.id}, function(err, user){
+    Product.findOne({_id: req.params.id}, function(err, prod){
             if(err){
                 return res.status(400).send({
                     request: false
                 });
             }
-    User.findOne({_id : user.postedBy},(err, data)=>{
+    User.findOne({_id : prod.postedBy},(err, data)=>{
         return res.json({
-            img: user.img,
-            productname: user.name,
+            img: prod.img,
+            productname: prod.name,
             username: data.username,
             email : data.email,
-            id: user._id,
-            price : user.price,
-            description: user.description,
+            id: prod._id,
+            price : prod.price,
+            description: prod.description,
+            endtime : prod.endtime,
             request: true
         });
     })
