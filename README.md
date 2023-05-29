@@ -6,7 +6,7 @@
    id is the product id generated from mongo db
    response format :
 
-   ```json
+   ```
    {
        "img": "uel.com",
        "productname": "Product",
@@ -15,7 +15,6 @@
        "id": "6469daa5c1a15d5c797c4d3a",
        "price": "$10",
        "description": "buy or die",
-        "endtime": "2023-05-30T14:00:00.000Z",
        "request": true
    }
    ```
@@ -94,6 +93,25 @@
 ```
 
 5. baseurl/auction/bid/:productId : (GET)
+
+   ```json
+   [
+       {
+           "productName": "Nike Air Jordans",
+           "price": "120",
+           "amount": "10000",
+           "status": false,
+           "id": "6472e869304124b845fe8223"
+       },
+       {
+           "productName": "Nike Air Jordans",
+           "price": "120",
+           "amount": "7000",
+           "status": false,
+           "id": "6472e869304124b845fe8223"
+       }
+   ]
+   ```
 6. baseurl/user/bid/:userId : (GET)
    give userId or  productId and there endpoints return array of bids related to that
    response :
@@ -101,15 +119,16 @@
    ```json
    [
        {
-           "_id": "6473910de9951f344b0dddf1",
-           "userId": "6472e062f02f6d5ea25f28ac",
-           "amount": "$20",
-           "productId": "6472e869304124b845fe8223",
-           "productName": "Nike Air Jordans",
-           "productPrice": "$120",
-           "createdAt": "2023-05-28T17:36:13.837Z",
-           "updatedAt": "2023-05-28T17:36:13.837Z",
-           "__v": 0
+           "firstname": "Admin",
+           "username": "auxhive",
+           "amount": "10000",
+           "id": "6472e062f02f6d5ea25f28ac"
+       },
+       {
+           "firstname": "Admin",
+           "username": "auxhive",
+           "amount": "7000",
+           "id": "6472e062f02f6d5ea25f28ac"
        }
    ]
    ```

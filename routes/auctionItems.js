@@ -52,22 +52,21 @@ router.get("/product",(req,res)=>{
 })
 
 router.get("/product/:id",(req,res)=>{
-    Product.findOne({_id: req.params.id}, function(err, prod){
+    Product.findOne({_id: req.params.id}, function(err, user){
             if(err){
                 return res.status(400).send({
                     request: false
                 });
             }
-    User.findOne({_id : prod.postedBy},(err, data)=>{
+    User.findOne({postedBy : user.postedBy},(err, data)=>{
         return res.json({
-            img: prod.img,
-            productname: prod.name,
+            img: user.img,
+            productname: user.name,
             username: data.username,
             email : data.email,
-            id: prod._id,
-            price : prod.price,
-            description: prod.description,
-            endtime : prod.endtime,
+            id: user._id,
+            price : user.price,
+            description: user.description,
             request: true
         });
     })
@@ -163,14 +162,27 @@ router.post("/bid",(req,res)=>{
 })
 
 router.get("/bid/:productId",(req,res)=>{
-    Bid.find({productId: req.params.productId}, (err, product)=>{
-        if(err){
-            return res.status(400).send({
-                request: false
-            });
+    Bid
+    .aggregate([{
+        $lookup: {
+            from: "products", // collection name in db
+            localField: "productId",
+            foreignField: "_id",
+            as: "prods"
         }
-       return res.json(product)
-
+    }]).exec(function(err, students) {
+        let arr = 
+        students.map(ele =>{
+            return {
+                productName : ele.prods[0].name,
+                price : ele.prods[0].price,
+                amount : ele.amount,
+                status : ele.prods[0].status,
+                id : ele.prods[0]._id
+            }
+        })
+        arr = arr.filter(ele => ele.id == req.params.productId)
+        res.json(arr);
     })
 })
 
