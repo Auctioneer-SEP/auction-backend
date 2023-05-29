@@ -58,7 +58,7 @@ router.get("/product/:id",(req,res)=>{
                     request: false
                 });
             }
-    User.findOne({postedBy : user.postedBy},(err, data)=>{
+    User.findOne({_id : user.postedBy},(err, data)=>{
         return res.json({
             img: user.img,
             productname: user.name,
