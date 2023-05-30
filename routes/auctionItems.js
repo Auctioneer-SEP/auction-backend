@@ -52,31 +52,26 @@ router.get("/product",(req,res)=>{
 })
 
 router.get("/product/:id",(req,res)=>{
-    Product.findOne({_id: req.params.id}, function(err, user){
-            if(err){
-                return res.status(400).send({
-                    request: false
-                });
-            }
-    User.findOne({postedBy : user.postedBy},(err, data)=>{
-        return res.json({
-            img: user.img,
-            productname: user.name,
-            username: data.username,
-            email : data.email,
-            id: user._id,
-            price : user.price,
-            description: user.description,
-            request: true
-        });
-    })
-            
-
+    Product.findOne({_id: req.params.id}, function(err, product){
+        if(err){
+            return res.status(400).send({
+                request: false
+            });
+        }
+        User.findOne({_id: product.postedBy},(err, user)=>{
+            return res.json({
+                img: product.img,
+                productname: product.name,
+                endtime: product.endtime,
+                username: user.username,
+                email : user.email,
+                id: product._id,
+                price : product.price,
+                description: product.description,
+                request: true
+            });
         })
-        
-
-
-    
+    })  
 })
 
 router.post("/bid",(req,res)=>{
