@@ -97,38 +97,27 @@
    ```json
    [
        {
-           "productName": "Nike Air Jordans",
-           "price": "120",
-           "amount": "10000",
-           "status": false,
-           "id": "6472e869304124b845fe8223"
-       },
-       {
-           "productName": "Nike Air Jordans",
-           "price": "120",
-           "amount": "7000",
-           "status": false,
-           "id": "6472e869304124b845fe8223"
+           "firstname": "Anirudh Chimpidi",
+           "username": "TronNemesis07",
+           "amount": "3000",
+           "id": "6474303096b14c2c6b29e118",
+           "productId": "647327acfc4f790d8fc22ccb"
        }
    ]
    ```
 6. baseurl/user/bid/:userId : (GET)
    give userId or  productId and there endpoints return array of bids related to that
-   response :
+   response :	
 
    ```json
    [
        {
-           "firstname": "Admin",
-           "username": "auxhive",
-           "amount": "10000",
-           "id": "6472e062f02f6d5ea25f28ac"
-       },
-       {
-           "firstname": "Admin",
-           "username": "auxhive",
-           "amount": "7000",
-           "id": "6472e062f02f6d5ea25f28ac"
+           "productName": "Nike Air Jordans",
+           "price": "120",
+           "amount": "200",
+           "status": false,
+           "id": "6472e869304124b845fe8223",
+           "userId": "6472e062f02f6d5ea25f28ac"
        }
    ]
    ```

@@ -11,22 +11,24 @@ router.get("/bid/:userId",(req,res)=>{
     Bid
     .aggregate([{
         $lookup: {
-            from: "users", // collection name in db
-            localField: "userId",
+            from: "products", // collection name in db
+            localField: "productId",
             foreignField: "_id",
-            as: "users"
+            as: "prods"
         }
     }]).exec(function(err, students) {
         let arr = 
         students.map(ele =>{
             return {
-                firstname : ele.users[0].name,
-                username : ele.users[0].username,
+                productName : ele.prods[0].name,
+                price : ele.prods[0].price,
                 amount : ele.amount,
-                id : ele.users[0]._id
+                status : ele.prods[0].status,
+                id : ele.prods[0]._id,
+                userId : ele.userId
             }
         })
-        arr = arr.filter(ele => ele.id == req.params.userId)
+        arr = arr.filter(ele => ele.userId == req.params.userId) 
         arr.sort((a,b)=> b.amount - a.amount)
         res.json(arr);
         // console.log(students[0].prods)
