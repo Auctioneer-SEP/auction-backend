@@ -25,7 +25,8 @@ router.get("/bid/:userId",(req,res)=>{
                 amount : ele.amount,
                 status : ele.prods[0].status,
                 id : ele.prods[0]._id,
-                userId : ele.userId
+                userId : ele.userId,
+                highBid : ele.prods[0].highBid
             }
         })
         arr = arr.filter(ele => ele.userId == req.params.userId) 
