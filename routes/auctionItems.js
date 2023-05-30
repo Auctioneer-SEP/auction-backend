@@ -80,7 +80,7 @@ router.get("/product/:id",(req,res)=>{
 })
 
 router.post("/bid",(req,res)=>{
-    Bid.findOne({userId : req.body.userId},(err1,data)=>{
+    Bid.findOne({userId : req.body.userId, productId : req.body.productId},(err1,data)=>{
         if(err1){
             return res.status(400).send({
                 request: false
@@ -183,7 +183,7 @@ router.get("/bid/:productId",(req,res)=>{
             }
         })
         arr = arr.filter(ele => ele.productId == req.params.productId)
-        // arr.sort((a,b)=> b.amount - a.amount)
+        arr.sort((a,b)=> b.amount - a.amount)
         res.json(arr);
     })
 })
