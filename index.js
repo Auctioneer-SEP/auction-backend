@@ -5,6 +5,11 @@ const mongoose = require("mongoose");
 //  const sigupModal = require("./modals/signup");
 const auctionRoute = require("./routes/auctionItems");
 const bcrypt = require("bcrypt")
+const moment = require('moment-timezone');
+
+let date = new Date(); 
+let kolkataDate = moment(date).tz("Asia/Kolkata").toDate();
+
 require('dotenv').config()
 
 var collection ;
